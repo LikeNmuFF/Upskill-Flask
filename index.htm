@@ -1,0 +1,928 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flask Mastery Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05060e;
+  --panel:#0b0f1c;
+  --panel2:#101426;
+  --border:rgba(255,255,255,0.07);
+  --border-hover:rgba(255,255,255,0.16);
+  --text:#e6ecff;
+  --muted:#6f7792;
+  --dim:#1f2538;
+  --nav-bg:rgba(7,9,18,0.92);
+  --grid-line:rgba(255,255,255,0.018);
+  --h1-from:#e6ecff;
+  --h1-to:#38bdf8;
+  --shadow:rgba(0,0,0,0.45);
+  --glow:rgba(56,189,248,0.5);
+
+  --c1:#38bdf8;
+  --c2:#a78bfa;
+  --c3:#f472b6;
+  --c4:#34d399;
+  --c5:#fb923c;
+  --c6:#facc15;
+}
+[data-theme="light"]{
+  --bg:#f5f7fc;
+  --panel:#ffffff;
+  --panel2:#eef1f8;
+  --border:rgba(0,0,0,0.08);
+  --border-hover:rgba(0,0,0,0.16);
+  --text:#1a1c27;
+  --muted:#7b839e;
+  --dim:#c9cedb;
+  --nav-bg:rgba(245,247,252,0.9);
+  --grid-line:rgba(0,0,0,0.035);
+  --h1-from:#1a1c27;
+  --h1-to:#0284c7;
+  --shadow:rgba(0,0,0,0.14);
+  --glow:rgba(2,132,199,0.35);
+
+  --c1:#0284c7;
+  --c2:#7c3aed;
+  --c3:#db2777;
+  --c4:#059669;
+  --c5:#ea580c;
+  --c6:#ca8a04;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+  overflow-x:hidden;
+  min-height:100vh;
+  position:relative;
+}
+
+/* animated aurora */
+body::before{
+  content:'';
+  position:fixed;
+  inset:-20% -10%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(56,189,248,0.16), transparent 36%),
+    radial-gradient(circle at 78% 10%, rgba(167,139,250,0.16), transparent 40%),
+    radial-gradient(circle at 62% 70%, rgba(244,114,182,0.12), transparent 42%);
+  filter:blur(64px);
+  opacity:0.9;
+  animation:drift 18s ease-in-out infinite alternate;
+  pointer-events:none;
+  z-index:0;
+}
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
+  z-index:0;
+  mix-blend-mode:soft-light;
+}
+@keyframes drift{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  50%{transform:translate3d(2%, -1%, 0) scale(1.05);}
+  100%{transform:translate3d(-2%, 1%, 0) scale(1.03);}
+}
+.floaty{
+  position:absolute;
+  width:300px;height:300px;
+  border-radius:28%;
+  background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+  filter:blur(22px);
+  opacity:0.3;
+  z-index:1;
+  animation:floaty 22s ease-in-out infinite;
+}
+.floaty.f2{top:30%;left:70%;animation-delay:6s;mix-blend-mode:screen;}
+.floaty.f1{top:60%;left:10%;animation-delay:2s;}
+@keyframes floaty{
+  0%{transform:translate3d(0,0,0) rotate(0deg);}
+  50%{transform:translate3d(12px,-16px,0) rotate(12deg);}
+  100%{transform:translate3d(-8px,18px,0) rotate(-8deg);}
+}
+
+/* HEADER */
+#header{
+  position:relative;
+  text-align:center;
+  padding:64px 24px 44px;
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+  z-index:2;
+}
+#header::before,#header::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+#header::before{
+  background:radial-gradient(ellipse 70% 90% at 50% -10%, rgba(255,255,255,0.06) 0%, transparent 70%);
+}
+#header::after{
+  background:radial-gradient(ellipse 40% 60% at 20% -10%, rgba(56,189,248,0.08), transparent 55%);
+  mix-blend-mode:screen;
+  animation:pulse 9s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:0.55}50%{opacity:0.85}}
+.eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.25em;
+  color:var(--c1);
+  text-transform:uppercase;
+  margin-bottom:14px;
+  opacity:0.85;
+}
+h1{
+  font-size:clamp(36px,6vw,76px);
+  font-weight:800;
+  letter-spacing:-0.03em;
+  line-height:1;
+  margin-bottom:14px;
+  background:linear-gradient(135deg, var(--h1-from) 30%, var(--h1-to) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.subtitle{
+  font-size:13px;
+  color:var(--muted);
+  letter-spacing:0.04em;
+  margin-bottom:32px;
+  opacity:0.9;
+}
+.prog-row{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  background:linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:10px 16px;
+  box-shadow:0 10px 34px rgba(0,0,0,0.28);
+}
+.prog-bar{width:190px;height:4px;background:var(--dim);border-radius:999px;overflow:hidden;position:relative}
+.prog-bar::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(255,255,255,0.12), transparent);
+  animation:shine 2.4s linear infinite;
+}
+.prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--c1),var(--c4));transition:width 1s ease}
+.prog-txt{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;white-space:nowrap}
+@keyframes shine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+
+/* PHASE NAV */
+#phase-nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+  padding:16px 24px;
+  border-bottom:1px solid var(--border);
+  background:var(--nav-bg);
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(16px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.25);
+}
+.pnav{
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:6px 14px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  background:rgba(255,255,255,0.02);
+  cursor:pointer;
+  transition:all 0.22s ease;
+  text-decoration:none;
+}
+.pnav:hover,
+.pnav.active{
+  color:var(--text);
+  border-color:var(--border-hover);
+  background:linear-gradient(120deg, var(--phase-col), transparent);
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+}
+
+/* CANVAS */
+#canvas-wrap{position:relative;width:100%;overflow-x:auto;overflow-y:visible;}
+#roadmap-canvas{position:relative;min-width:900px;padding:0 60px 90px;}
+
+/* SVG LINES */
+#svg-lines{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:visible;
+}
+
+/* PHASE SECTION */
+.phase-section{
+  position:relative;
+  padding:52px 0 18px;
+  z-index:2;
+  opacity:0;
+  transform:translateY(20px) scale(0.99);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.phase-section.visible{opacity:1;transform:translateY(0) scale(1);}
+.phase-label{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--phase-col);
+  margin-bottom:20px;
+  padding:6px 14px;
+  border:1px solid rgba(255,255,255,0.07);
+  border-left:3px solid var(--phase-col);
+  border-radius:0 6px 6px 0;
+  background:rgba(255,255,255,0.02);
+  box-shadow:0 8px 30px rgba(0,0,0,0.12);
+}
+.phase-label .ph-num{
+  font-size:22px;
+  font-weight:800;
+  font-family:'Syne',sans-serif;
+  opacity:0.3;
+  margin-right:4px;
+}
+
+/* NODE ROW */
+.node-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:stretch;
+}
+
+/* NODE */
+.node{
+  position:relative;
+  background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px 20px;
+  width:230px;
+  flex-shrink:0;
+  transition:transform 0.35s cubic-bezier(.16,.84,.44,1), border-color 0.2s ease, box-shadow 0.35s ease, background 0.3s ease;
+  cursor:default;
+  box-shadow:0 16px 40px rgba(0,0,0,0.25);
+  transform-origin:center center;
+}
+.node:hover{
+  transform:translateY(-6px) rotateX(4deg) rotateY(-2deg);
+  border-color:var(--border-hover);
+  box-shadow:0 24px 55px var(--shadow);
+  background:linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+}
+.node::before{
+  content:'';
+  position:absolute;
+  left:0;top:12px;bottom:12px;
+  width:2px;
+  background:var(--phase-col);
+  border-radius:0 2px 2px 0;
+  opacity:0.5;
+  transition:opacity 0.2s;
+}
+.node:hover::before{opacity:1}
+
+.node.done{background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.18)}
+.node.done::before{background:var(--c4);opacity:1}
+.node.current{
+  background:rgba(56,189,248,0.08);
+  border-color:rgba(56,189,248,0.32);
+  box-shadow:0 0 0 1px rgba(56,189,248,0.1),0 10px 50px rgba(56,189,248,0.14);
+  animation:glimmer 3s ease-in-out infinite;
+}
+.node.current::before{background:var(--c1);opacity:1;animation:blinkBar 2s ease-in-out infinite}
+.node.locked{opacity:0.38;filter:saturate(0.35)}
+@keyframes blinkBar{0%,100%{opacity:1}50%{opacity:0.18}}
+@keyframes glimmer{
+  0%{box-shadow:0 0 0 1px rgba(56,189,248,0.08),0 8px 40px rgba(56,189,248,0.08);}
+  50%{box-shadow:0 0 0 2px rgba(56,189,248,0.14),0 12px 60px rgba(56,189,248,0.16);}
+  100%{box-shadow:0 0 0 1px rgba(56,189,248,0.08),0 8px 40px rgba(56,189,248,0.08);}
+}
+
+/* node top row */
+.node-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+.node-day{
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.15em;
+  color:var(--muted);
+}
+.node-badge{
+  font-family:'Space Mono',monospace;
+  font-size:8px;
+  letter-spacing:0.1em;
+  padding:2px 7px;
+  border-radius:20px;
+}
+.node.done .node-badge{background:rgba(52,211,153,0.12);color:var(--c4);border:1px solid rgba(52,211,153,0.22)}
+.node.done .node-badge::before{content:'✓ done'}
+.node.current .node-badge{background:rgba(56,189,248,0.1);color:var(--c1);border:1px solid rgba(56,189,248,0.2)}
+.node.current .node-badge::before{content:'• now'}
+
+.node-title{
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+  line-height:1.35;
+  margin-bottom:10px;
+}
+.node-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+}
+.node-tags span{
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  padding:2px 7px;
+  border-radius:3px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  color:var(--muted);
+}
+.node.done .node-tags span{background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.12);color:rgba(52,211,153,0.7)}
+.node.current .node-tags span{background:rgba(56,189,248,0.06);border-color:rgba(56,189,248,0.18);color:rgba(56,189,248,0.85)}
+
+.node-notes{
+  margin-top:10px;
+  padding-top:8px;
+  border-top:1px solid var(--border);
+  font-size:11px;
+  color:var(--muted);
+  font-style:italic;
+  line-height:1.5;
+  font-family:'Syne',sans-serif;
+  font-weight:400;
+}
+
+.node-dot{
+  position:absolute;
+  right:-5px;
+  top:50%;
+  transform:translateY(-50%);
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--phase-col);
+  border:2px solid var(--bg);
+  opacity:0;
+  transition:opacity 0.2s;
+  z-index:5;
+}
+.node:hover .node-dot{opacity:1}
+
+/* PHASE DIVIDER */
+.phase-divider{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:10px 0 0;
+  opacity:0.28;
+}
+.phase-divider-line{flex:1;height:1px;background:var(--border)}
+.phase-divider-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--phase-col);
+  flex-shrink:0;
+}
+
+/* LEGEND */
+#legend{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:center;
+  padding:22px 24px;
+  border-top:1px solid var(--border);
+  margin-top:26px;
+  position:relative;
+  z-index:2;
+  backdrop-filter:blur(6px);
+}
+.leg-item{
+  display:flex;align-items:center;gap:7px;
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:0.1em;color:var(--muted);
+}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:28px;
+  border-top:1px solid var(--border);
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.12em;
+  color:var(--dim);
+  position:relative;
+  z-index:2;
+}
+
+#header,#phase-nav,#canvas-wrap{position:relative;z-index:2}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1e2235;border-radius:2px}
+
+/* THEME TOGGLE */
+#theme-toggle{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  z-index:200;
+  width:46px;height:46px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+  box-shadow:0 6px 24px var(--shadow);
+  transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+  line-height:1;
+}
+#theme-toggle:hover{transform:scale(1.07);box-shadow:0 8px 30px var(--shadow)}
+
+html{transition:background 0.3s ease}
+body,#header,.node,.prog-row,#phase-nav,footer,#legend{transition:background 0.3s ease,color 0.3s ease,border-color 0.3s ease}
+
+@media(max-width:600px){
+  h1{font-size:36px}
+  #roadmap-canvas{padding:0 20px 70px;min-width:340px}
+  .node{width:100%;min-width:0}
+  .node-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="floaty f1"></div><div class="floaty f2"></div>
+
+<!-- HEADER -->
+<div id="header">
+  <p class="eyebrow">Learning Journal &middot; 2026</p>
+  <h1>Flask Mastery</h1>
+  <p class="subtitle">3-6 month &middot; 30 nodes &middot; 6 phases &middot; from Python basics to production</p>
+  <div class="prog-row">
+    <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    <span class="prog-txt" id="progTxt">0 / 30</span>
+  </div>
+</div>
+
+<!-- PHASE NAV -->
+<nav id="phase-nav">
+  <a href="#p1" class="pnav" style="--phase-col:var(--c1)">01 · Foundation</a>
+  <a href="#p2" class="pnav" style="--phase-col:var(--c2)">02 · Databases</a>
+  <a href="#p3" class="pnav" style="--phase-col:var(--c3)">03 · Auth</a>
+  <a href="#p4" class="pnav" style="--phase-col:var(--c4)">04 · REST API</a>
+  <a href="#p5" class="pnav" style="--phase-col:var(--c5)">05 · Architecture</a>
+  <a href="#p6" class="pnav" style="--phase-col:var(--c6)">06 · Deploy</a>
+</nav>
+
+<!-- ROADMAP CANVAS -->
+<div id="canvas-wrap">
+<div id="roadmap-canvas">
+
+<svg id="svg-lines" xmlns="http://www.w3.org/2000/svg"></svg>
+
+<!-- PHASE 1 -->
+<section class="phase-section" id="p1" style="--phase-col:var(--c1)">
+  <div class="phase-label">
+    <span class="ph-num">01</span>
+    Foundation · Weeks 1-2
+  </div>
+  <div class="node-row">
+
+    <div class="node current" data-id="d01">
+      <div class="node-top">
+        <span class="node-day">Day 01</span>
+        <span class="node-badge"></span>
+      </div>
+      <div class="node-title">Python Fundamentals Refresh</div>
+      <div class="node-tags">
+        <span>functions</span><span>modules</span><span>venv</span><span>pip</span>
+      </div>
+      <p class="node-notes">Warm up syntax, typing, and packaging muscle memory.</p>
+    </div>
+
+    <div class="node locked" data-id="d02">
+      <div class="node-top"><span class="node-day">Day 02</span><span class="node-badge"></span></div>
+      <div class="node-title">OOP &amp; Python Data Structures</div>
+      <div class="node-tags"><span>classes</span><span>dicts</span><span>list comp</span><span>decorators</span></div>
+    </div>
+
+    <div class="node locked" data-id="d03">
+      <div class="node-top"><span class="node-day">Day 03</span><span class="node-badge"></span></div>
+      <div class="node-title">Flask Install &amp; First App</div>
+      <div class="node-tags"><span>flask install</span><span>app.py</span><span>run server</span><span>debug</span></div>
+    </div>
+
+    <div class="node locked" data-id="d04">
+      <div class="node-top"><span class="node-day">Day 04</span><span class="node-badge"></span></div>
+      <div class="node-title">Routing &amp; URL Rules</div>
+      <div class="node-tags"><span>@app.route</span><span>url_for</span><span>converters</span><span>methods</span></div>
+    </div>
+
+    <div class="node locked" data-id="d05">
+      <div class="node-top"><span class="node-day">Day 05</span><span class="node-badge"></span></div>
+      <div class="node-title">Jinja2 Templates</div>
+      <div class="node-tags"><span>render_template</span><span>loops</span><span>filters</span><span>extends</span></div>
+    </div>
+
+    <div class="node locked" data-id="d06">
+      <div class="node-top"><span class="node-day">Day 06</span><span class="node-badge"></span></div>
+      <div class="node-title">Static Files &amp; HTML Forms</div>
+      <div class="node-tags"><span>static/</span><span>request.form</span><span>GET/POST</span><span>redirect</span></div>
+    </div>
+
+  </div>
+  <div class="phase-divider"><div class="phase-divider-line"></div><div class="phase-divider-dot"></div><div class="phase-divider-line"></div></div>
+</section>
+
+<!-- PHASE 2 -->
+<section class="phase-section" id="p2" style="--phase-col:var(--c2)">
+  <div class="phase-label">
+    <span class="ph-num">02</span>
+    Persistence · Weeks 3-4
+  </div>
+  <div class="node-row">
+
+    <div class="node locked" data-id="d07">
+      <div class="node-top"><span class="node-day">Day 07</span><span class="node-badge"></span></div>
+      <div class="node-title">SQL &amp; SQLite Basics</div>
+      <div class="node-tags"><span>SQL syntax</span><span>CREATE</span><span>INSERT</span><span>SELECT</span></div>
+    </div>
+
+    <div class="node locked" data-id="d08">
+      <div class="node-top"><span class="node-day">Day 08</span><span class="node-badge"></span></div>
+      <div class="node-title">Flask-SQLAlchemy Setup</div>
+      <div class="node-tags"><span>db.Model</span><span>models</span><span>db.session</span><span>config</span></div>
+    </div>
+
+    <div class="node locked" data-id="d09">
+      <div class="node-top"><span class="node-day">Day 09</span><span class="node-badge"></span></div>
+      <div class="node-title">CRUD Operations</div>
+      <div class="node-tags"><span>create</span><span>read</span><span>update</span><span>delete</span></div>
+    </div>
+
+    <div class="node locked" data-id="d10">
+      <div class="node-top"><span class="node-day">Day 10</span><span class="node-badge"></span></div>
+      <div class="node-title">Relationships &amp; Queries</div>
+      <div class="node-tags"><span>ForeignKey</span><span>backref</span><span>filter_by</span><span>joins</span></div>
+    </div>
+
+    <div class="node locked" data-id="d11">
+      <div class="node-top"><span class="node-day">Day 11</span><span class="node-badge"></span></div>
+      <div class="node-title">Flask-Migrate</div>
+      <div class="node-tags"><span>alembic</span><span>migrate</span><span>upgrade</span><span>downgrade</span></div>
+    </div>
+
+    <div class="node locked" data-id="d12">
+      <div class="node-top"><span class="node-day">Day 12</span><span class="node-badge"></span></div>
+      <div class="node-title">Project: Task Manager App</div>
+      <div class="node-tags"><span>full CRUD</span><span>templates</span><span>db</span></div>
+    </div>
+
+  </div>
+  <div class="phase-divider"><div class="phase-divider-line"></div><div class="phase-divider-dot"></div><div class="phase-divider-line"></div></div>
+</section>
+
+<!-- PHASE 3 -->
+<section class="phase-section" id="p3" style="--phase-col:var(--c3)">
+  <div class="phase-label">
+    <span class="ph-num">03</span>
+    Auth &amp; Security · Weeks 5-6
+  </div>
+  <div class="node-row">
+
+    <div class="node locked" data-id="d13">
+      <div class="node-top"><span class="node-day">Day 13</span><span class="node-badge"></span></div>
+      <div class="node-title">Sessions &amp; Cookies</div>
+      <div class="node-tags"><span>session[]</span><span>secret_key</span><span>cookies</span><span>flash()</span></div>
+    </div>
+
+    <div class="node locked" data-id="d14">
+      <div class="node-top"><span class="node-day">Day 14</span><span class="node-badge"></span></div>
+      <div class="node-title">Password Hashing</div>
+      <div class="node-tags"><span>bcrypt</span><span>werkzeug</span><span>hash/verify</span><span>salting</span></div>
+    </div>
+
+    <div class="node locked" data-id="d15">
+      <div class="node-top"><span class="node-day">Day 15</span><span class="node-badge"></span></div>
+      <div class="node-title">Flask-Login</div>
+      <div class="node-tags"><span>LoginManager</span><span>UserMixin</span><span>login_required</span></div>
+    </div>
+
+    <div class="node locked" data-id="d16">
+      <div class="node-top"><span class="node-day">Day 16</span><span class="node-badge"></span></div>
+      <div class="node-title">Flask-WTF &amp; Validation</div>
+      <div class="node-tags"><span>FlaskForm</span><span>validators</span><span>CSRF</span><span>wtforms</span></div>
+    </div>
+
+    <div class="node locked" data-id="d17">
+      <div class="node-top"><span class="node-day">Day 17</span><span class="node-badge"></span></div>
+      <div class="node-title">Email &amp; Password Reset</div>
+      <div class="node-tags"><span>Flask-Mail</span><span>itsdangerous</span><span>tokens</span></div>
+    </div>
+
+    <div class="node locked" data-id="d18">
+      <div class="node-top"><span class="node-day">Day 18</span><span class="node-badge"></span></div>
+      <div class="node-title">Project: Auth System</div>
+      <div class="node-tags"><span>register</span><span>login</span><span>logout</span><span>protected</span></div>
+    </div>
+
+  </div>
+  <div class="phase-divider"><div class="phase-divider-line"></div><div class="phase-divider-dot"></div><div class="phase-divider-line"></div></div>
+</section>
+
+<!-- PHASE 4 -->
+<section class="phase-section" id="p4" style="--phase-col:var(--c4)">
+  <div class="phase-label">
+    <span class="ph-num">04</span>
+    REST API · Weeks 7-9
+  </div>
+  <div class="node-row">
+
+    <div class="node locked" data-id="d19">
+      <div class="node-top"><span class="node-day">Day 19</span><span class="node-badge"></span></div>
+      <div class="node-title">REST Principles &amp; JSON</div>
+      <div class="node-tags"><span>REST</span><span>jsonify</span><span>status codes</span><span>Postman</span></div>
+    </div>
+
+    <div class="node locked" data-id="d20">
+      <div class="node-top"><span class="node-day">Day 20</span><span class="node-badge"></span></div>
+      <div class="node-title">Flask-RESTful / Smorest</div>
+      <div class="node-tags"><span>Resource</span><span>MethodView</span><span>Blueprints</span></div>
+    </div>
+
+    <div class="node locked" data-id="d21">
+      <div class="node-top"><span class="node-day">Day 21</span><span class="node-badge"></span></div>
+      <div class="node-title">Marshmallow &amp; Serialization</div>
+      <div class="node-tags"><span>Schema</span><span>validate</span><span>dump/load</span><span>nested</span></div>
+    </div>
+
+    <div class="node locked" data-id="d22">
+      <div class="node-top"><span class="node-day">Day 22</span><span class="node-badge"></span></div>
+      <div class="node-title">JWT Authentication</div>
+      <div class="node-tags"><span>Flask-JWT</span><span>access token</span><span>refresh</span><span>revoke</span></div>
+    </div>
+
+    <div class="node locked" data-id="d23">
+      <div class="node-top"><span class="node-day">Day 23</span><span class="node-badge"></span></div>
+      <div class="node-title">Error Handling &amp; Testing</div>
+      <div class="node-tags"><span>errorhandler</span><span>pytest</span><span>unittest</span><span>mocking</span></div>
+    </div>
+
+    <div class="node locked" data-id="d24">
+      <div class="node-top"><span class="node-day">Day 24</span><span class="node-badge"></span></div>
+      <div class="node-title">Project: Full RESTful API</div>
+      <div class="node-tags"><span>full API</span><span>JWT auth</span><span>Swagger</span></div>
+    </div>
+
+  </div>
+  <div class="phase-divider"><div class="phase-divider-line"></div><div class="phase-divider-dot"></div><div class="phase-divider-line"></div></div>
+</section>
+
+<!-- PHASE 5 -->
+<section class="phase-section" id="p5" style="--phase-col:var(--c5)">
+  <div class="phase-label">
+    <span class="ph-num">05</span>
+    Architecture · Weeks 10-12
+  </div>
+  <div class="node-row">
+
+    <div class="node locked" data-id="d25">
+      <div class="node-top"><span class="node-day">Day 25</span><span class="node-badge"></span></div>
+      <div class="node-title">App Factory &amp; Blueprints</div>
+      <div class="node-tags"><span>create_app()</span><span>Blueprint</span><span>config objects</span></div>
+    </div>
+
+    <div class="node locked" data-id="d26">
+      <div class="node-top"><span class="node-day">Day 26</span><span class="node-badge"></span></div>
+      <div class="node-title">Caching &amp; Redis</div>
+      <div class="node-tags"><span>Flask-Caching</span><span>Redis</span><span>@cached</span><span>TTL</span></div>
+    </div>
+
+    <div class="node locked" data-id="d27">
+      <div class="node-top"><span class="node-day">Day 27</span><span class="node-badge"></span></div>
+      <div class="node-title">Background Tasks with Celery</div>
+      <div class="node-tags"><span>Celery</span><span>tasks</span><span>beat</span><span>workers</span></div>
+    </div>
+
+    <div class="node locked" data-id="d28">
+      <div class="node-top"><span class="node-day">Day 28</span><span class="node-badge"></span></div>
+      <div class="node-title">WebSockets &amp; Real-time</div>
+      <div class="node-tags"><span>Flask-SocketIO</span><span>emit</span><span>rooms</span><span>events</span></div>
+    </div>
+
+  </div>
+  <div class="phase-divider"><div class="phase-divider-line"></div><div class="phase-divider-dot"></div><div class="phase-divider-line"></div></div>
+</section>
+
+<!-- PHASE 6 -->
+<section class="phase-section" id="p6" style="--phase-col:var(--c6)">
+  <div class="phase-label">
+    <span class="ph-num">06</span>
+    Production &amp; Deploy · Weeks 13-16
+  </div>
+  <div class="node-row">
+
+    <div class="node locked" data-id="d29">
+      <div class="node-top"><span class="node-day">Day 29</span><span class="node-badge"></span></div>
+      <div class="node-title">Docker &amp; Environment Config</div>
+      <div class="node-tags"><span>Dockerfile</span><span>docker-compose</span><span>.env</span><span>gunicorn</span></div>
+    </div>
+
+    <div class="node locked" data-id="d30">
+      <div class="node-top"><span class="node-day">Day 30</span><span class="node-badge"></span></div>
+      <div class="node-title">Deploy to Railway / Render / VPS</div>
+      <div class="node-tags"><span>CI/CD</span><span>GitHub Actions</span><span>PostgreSQL</span><span>monitoring</span></div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /roadmap-canvas -->
+</div><!-- /canvas-wrap -->
+
+<!-- LEGEND -->
+<div id="legend">
+  <div class="leg-item"><span class="leg-dot" style="background:var(--c4)"></span>completed</div>
+  <div class="leg-item"><span class="leg-dot" style="background:var(--c1)"></span>in progress</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#2a2f45"></span>upcoming</div>
+</div>
+
+<footer>
+  flask mastery roadmap &middot; updated <span id="footerDate">—</span> &middot; github pages
+</footer>
+
+<button id="theme-toggle" title="Toggle light / dark mode">🌙</button>
+
+<script>
+// THEME TOGGLE ----------------------------------------------------
+const html = document.documentElement;
+const btn  = document.getElementById('theme-toggle');
+const saved = localStorage.getItem('flask-roadmap-theme') || 'dark';
+applyTheme(saved);
+btn.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  applyTheme(next);
+  localStorage.setItem('flask-roadmap-theme', next);
+});
+function applyTheme(theme){
+  html.setAttribute('data-theme', theme);
+  btn.textContent = theme === 'light' ? '🌙' : '☀️';
+  setTimeout(drawLines, 350);
+}
+
+// PROGRESS --------------------------------------------------------
+function updateProgress(){
+  const total = document.querySelectorAll('.node').length;
+  const done  = document.querySelectorAll('.node.done').length;
+  const pct   = total > 0 ? Math.round(done/total*100) : 0;
+  document.getElementById('progFill').style.width = pct+'%';
+  document.getElementById('progTxt').textContent  = done+' / '+total+' nodes';
+}
+
+// DATE ------------------------------------------------------------
+const d=new Date();
+const mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+document.getElementById('footerDate').textContent =
+  d.getDate()+' '+mo[d.getMonth()]+' '+d.getFullYear();
+
+// SECTION REVEAL --------------------------------------------------
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.phase-section').forEach(sec=>observer.observe(sec));
+
+// ACTIVE NAV ------------------------------------------------------
+const navLinks = Array.from(document.querySelectorAll('.pnav'));
+function syncNav(){
+  const pos = window.scrollY + 140;
+  let active = navLinks[0];
+  navLinks.forEach(link=>{
+    const target = document.querySelector(link.getAttribute('href'));
+    if(target && target.offsetTop <= pos) active = link;
+  });
+  navLinks.forEach(l=>l.classList.toggle('active', l===active));
+}
+window.addEventListener('scroll', syncNav);
+
+// SVG CONNECTOR LINES ---------------------------------------------
+function drawLines(){
+  const svg = document.getElementById('svg-lines');
+  svg.innerHTML = '';
+  const canvas = document.getElementById('roadmap-canvas');
+  const canvasRect = canvas.getBoundingClientRect();
+  const isLight = html.getAttribute('data-theme') === 'light';
+
+  const darkColors  = ['#38bdf8','#a78bfa','#f472b6','#34d399','#fb923c','#facc15'];
+  const lightColors = ['#0284c7','#7c3aed','#db2777','#059669','#ea580c','#ca8a04'];
+  const colors = isLight ? lightColors : darkColors;
+  const phases = document.querySelectorAll('.phase-section');
+
+  phases.forEach((phase, pi) => {
+    if(pi === phases.length - 1) return;
+    const thisNodes = phase.querySelectorAll('.node');
+    const nextPhase = phases[pi+1];
+    const nextNodes = nextPhase.querySelectorAll('.node');
+    if(!thisNodes.length || !nextNodes.length) return;
+
+    const fromNode = thisNodes[thisNodes.length-1];
+    const toNode   = nextNodes[0];
+
+    const fr = fromNode.getBoundingClientRect();
+    const tr = toNode.getBoundingClientRect();
+
+    const x1 = fr.left + fr.width/2  - canvasRect.left;
+    const y1 = fr.top  + fr.height   - canvasRect.top;
+    const x2 = tr.left + tr.width/2  - canvasRect.left;
+    const y2 = tr.top               - canvasRect.top;
+
+    const mid = (y1+y2)/2;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', `M${x1},${y1} C${x1},${mid} ${x2},${mid} ${x2},${y2}`);
+    path.setAttribute('fill','none');
+    path.setAttribute('stroke', colors[pi]);
+    path.setAttribute('stroke-width','1.5');
+    path.setAttribute('stroke-dasharray','4 4');
+    path.setAttribute('opacity','0.35');
+    path.style.animation='dash 6s ease-in-out infinite alternate';
+    svg.appendChild(path);
+
+    [x1,y1,x2,y2].forEach((_, i) => {
+      if(i%2!==0) return;
+      const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      const cx_ = i===0 ? x1 : x2;
+      const cy_ = i===0 ? y1 : y2;
+      dot.setAttribute('cx', cx_);
+      dot.setAttribute('cy', cy_);
+      dot.setAttribute('r','3');
+      dot.setAttribute('fill', colors[pi]);
+      dot.setAttribute('opacity','0.38');
+      svg.appendChild(dot);
+    });
+  });
+
+  const h = canvas.scrollHeight;
+  svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${h}`);
+  svg.style.height = h+'px';
+}
+
+window.addEventListener('load', ()=>{
+  updateProgress();
+  setTimeout(drawLines, 400);
+  syncNav();
+});
+window.addEventListener('resize', ()=>{ setTimeout(drawLines,120); });
+
+// subtle dashed motion
+const style = document.createElement('style');
+style.textContent='@keyframes dash{from{stroke-dashoffset:12;}to{stroke-dashoffset:0;}}';
+document.head.appendChild(style);
+</script>
+</body>
+</html>
