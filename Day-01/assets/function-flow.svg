@@ -1,0 +1,60 @@
+﻿<svg width="800" height="220" viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Python function flow</title>
+  <desc id="desc">Animated diagram showing defining and calling a Python function and reusing its result.</desc>
+  <style>
+    :root { color-scheme: dark; }
+    #grad stop:nth-child(1) { animation: c1 4s infinite; }
+    #grad stop:nth-child(2) { animation: c2 4s infinite; }
+    @keyframes c1 { 0%,100% { stop-color:#306998; } 50% { stop-color:#4B8BBE; } }
+    @keyframes c2 { 0%,100% { stop-color:#FFD43B; } 50% { stop-color:#FFE873; } }
+
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { rx:8px; } 50% { rx:12px; } }
+
+    .stroke-pulse { animation: strokePulse 1.8s infinite; }
+    @keyframes strokePulse { 0%,100% { stroke-width:2px; } 50% { stroke-width:4px; } }
+
+    .march { stroke-dasharray:5 5; animation: march 1.5s infinite linear; }
+    @keyframes march { to { stroke-dashoffset:10; } }
+
+    .fade { animation: fade 2s infinite; }
+    @keyframes fade { 0%,100% { opacity:0.8; } 50% { opacity:1; } }
+  </style>
+
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#306998" />
+      <stop offset="100%" stop-color="#FFD43B" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="220" fill="#0d1117" rx="12" />
+
+  <!-- Function box -->
+  <rect x="50" y="30" width="200" height="100" fill="url(#grad)" stroke="#FFD43B" class="pulse" />
+  <text x="150" y="85" text-anchor="middle" fill="#FFFFFF" font-size="16" font-family="monospace">def greet():</text>
+  <text x="150" y="110" text-anchor="middle" fill="#CCCCCC" font-size="14" font-family="monospace">return "Hello!"</text>
+
+  <!-- Input arrow -->
+  <line x1="280" y1="80" x2="330" y2="80" stroke="#FFD43B" stroke-width="2" class="march" />
+  <polygon points="330,80 320,75 320,85" fill="#FFD43B" />
+
+  <!-- Calling the function -->
+  <rect x="350" y="30" width="200" height="100" fill="#1f2a3a" stroke="#4B8BBE" class="stroke-pulse" />
+  <text x="450" y="70" text-anchor="middle" fill="#FFFFFF" font-size="14" font-family="monospace">result = greet()</text>
+  <text x="450" y="95" text-anchor="middle" fill="#FFFFFF" font-size="14" font-family="monospace">print(result)</text>
+  <text x="450" y="120" text-anchor="middle" fill="#FFD43B" font-size="14" font-family="monospace">&gt;&gt; "Hello!"</text>
+
+  <!-- Output arrow -->
+  <line x1="580" y1="80" x2="630" y2="80" stroke="#FFD43B" stroke-width="2" class="march" />
+  <polygon points="630,80 620,75 620,85" fill="#FFD43B" />
+
+  <!-- Reusability badge -->
+  <rect x="650" y="30" width="120" height="100" fill="#2d333b" stroke="#FFD43B" rx="12" class="fade" />
+  <text x="710" y="75" text-anchor="middle" fill="#FFFFFF" font-size="14" font-family="monospace">Call</text>
+  <text x="710" y="95" text-anchor="middle" fill="#FFFFFF" font-size="14" font-family="monospace">Multiple</text>
+  <text x="710" y="115" text-anchor="middle" fill="#FFFFFF" font-size="14" font-family="monospace">Times</text>
+
+  <!-- Caption -->
+  <text x="400" y="190" text-anchor="middle" fill="#8B949E" font-size="12">Define Once - Reuse Everywhere</text>
+</svg>
