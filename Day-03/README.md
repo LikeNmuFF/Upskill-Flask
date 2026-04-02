@@ -124,18 +124,18 @@ This is one of Python's most important patterns. Memorize it early — you'll se
 ```mermaid
 timeline
     title Python + Flask Learning Path
-    Day 01 : Python basics
-           : Variables & data types
-    Day 02 : Functions & logic
-           : Loops & conditions
+    Day 01 : Python fundamentals ✅
+           : functions, module ✅
+    Day 02 : OOP & Data Structures ✅
+           : classes & lists ✅
     Day 03 : Flask install ✅
            : First web app ✅
-           : Routes & debug mode ✅
-    Day 04 : Templates with Jinja2
-           : HTML rendering
-    Day 05 : Forms & POST requests
-    Day 06 : Database with SQLite
-    Day 07 : Full mini project 🚀
+           : flask install & debug mode ✅
+    Day 04 : Routing & URL Rules 
+           : url_for, converters,method
+    Day 05 : Jinja2 Templates
+    Day 06 : Static Files & HTML Forms
+    Day 07 : SQL & SQLite Basics
 ```
 
 ---
