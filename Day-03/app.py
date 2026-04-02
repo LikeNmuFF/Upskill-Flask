@@ -21,5 +21,5 @@ def index():		  # defining a function of specific route to easily understand
 
 
 if __name__ == "__main__": # This indicates that if module name is equal to the main file then it can execute the file
-	app.run(debug=True)    # and run it you can run it in specifi port like port="5555" or what you prefered, and the default port is 5000
+	app.run(debug=True)    # and run it you can run it in specifi port like port="5000" or what you prefered, and the default port is 5000
 
