@@ -1,0 +1,20 @@
+{% extends "base.html" %} <!-- This is inheriting the files from base.html to get less of work 
+								than repeating copy and pase in the other files -->
+
+{% block content %} 		<!-- These means that on the base contents is blocked on the part so that it is freely to fill
+								the context inside for specific page purpose -->
+	<h2>
+		{% for item in items%} <!-- This part is using the for loop to printout the lists of items on the page -->
+		{{item | upper}}		<!-- Then this part is filter the item from the for loop using the upper for the all uppercase result -->
+
+		{% endfor %} <!-- this is used to end an forloop statement inside the jinja2 templates -->
+
+
+	</h2>
+		
+	
+	<h1>{{hello}} {{name}}</h1>
+{% endblock %}	<!-- This endblock is limiting or the end of the context , so that the communication of two files
+					understand where to context stop and the base.html fill the rest outside of the block -->
+
+	

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Site{% endblock %}</title>
+</head>
+<body>
+<main>
+    <nav>
+        <a href="/">Home</a> <!-- <a> is an anchor tag (hyperlink), if you clicked that you'll get redirect on the link provided -->
+        <a href="/about">About</a> <!-- Like on this about, the home will redirect you to the root then the about will redirect you to the /about -->
+    </nav>
+    
+    
+        {% block content %}{% endblock %} 
+        <!-- Lets talked about block and endblock -->
+        <!--
+            Those are jinja2 templates, This is the inheritance of jinja2 in flask
+            Parent (base.html) - Creates empty "slots" using {% block %} and {% endblock %}
+            Child (index.html) - Fills those "slots" with content using {% block %} and {% endblock %}
+
+        -->
+   
+    
+    <footer>© 2026</footer>
+     
+</main>
+</body>
+</html>
