@@ -1,5 +1,5 @@
 # ==========================================
-# Welcome to Day 06 of learning Flask      #
+# Welcome to Day-06 of learning Flask      #
 # Today you'll learn about:                #
 # /static, request.form, GET/POST, redirect#
 # ==========================================#
