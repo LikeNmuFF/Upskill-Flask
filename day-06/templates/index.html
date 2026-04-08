@@ -1,0 +1,17 @@
+{% extends 'base.html' %}    
+
+{% block title %} index {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Welcome to the Lab</h1>
+        <p>Try sending some data to your Flask server!</p>
+
+        <form action="/submit" method="POST">
+            <label for="username">Enter Name:</label>
+            <input type="text" id="username" name="user_name" placeholder="e.g. Gemini" required>
+            
+            <button type="submit">Send to Flask</button>
+        </form>
+    </div>
+{% endblock %}
