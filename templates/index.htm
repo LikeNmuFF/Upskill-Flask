@@ -1,0 +1,372 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Flask Mastery Roadmap by</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel='stylesheet' href="{{ url_for('static', filename='css/style.css')}}">
+
+  <link rel="icon" type="image/png" href="static/logo-header.png">
+  <style>
+  
+  </style>
+
+</head>
+
+<body>
+  <div class="floaty f1"></div>
+  <div class="floaty f2"></div>
+
+  <!-- HEADER -->
+  <div id="header">
+    <p class="eyebrow">Learning Journal · 2026</p>
+    <h1>Flask Mastery</h1>
+    <h3>created by {{name}}</h3>
+    <p class="subtitle">3–6 months · 30 nodes · 6 phases · from Python basics to production</p>
+    <div class="prog-row">
+      <div class="prog-bar">
+        <div class="prog-fill" id="progFill"></div>
+      </div>
+      <span class="prog-txt" id="progTxt">0 / 30</span>
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div id="stats-strip">
+    <div class="stat-item">
+      <div class="stat-val" id="statDone">1</div>
+      <div class="stat-lbl">Completed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val" id="statCurrent">1</div>
+      <div class="stat-lbl">In Progress</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val" id="statLeft">28</div>
+      <div class="stat-lbl">Remaining</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">6</div>
+      <div class="stat-lbl">Phases</div>
+    </div>
+  </div>
+
+  <!-- PHASE NAV -->
+  <nav id="phase-nav">
+    <a href="#p1" class="pnav" style="--phase-col:var(--c1)">01 · Foundation</a>
+    <a href="#p2" class="pnav" style="--phase-col:var(--c2)">02 · Databases</a>
+    <a href="#p3" class="pnav" style="--phase-col:var(--c3)">03 · Auth</a>
+    <a href="#p4" class="pnav" style="--phase-col:var(--c4)">04 · REST API</a>
+    <a href="#p5" class="pnav" style="--phase-col:var(--c5)">05 · Architecture</a>
+    <a href="#p6" class="pnav" style="--phase-col:var(--c6)">06 · Deploy</a>
+  </nav>
+
+  <!-- ROADMAP CANVAS -->
+  <div id="canvas-wrap">
+    <div id="roadmap-canvas">
+
+      <svg id="svg-lines" xmlns="http://www.w3.org/2000/svg"></svg>
+
+      <!-- PHASE 1 -->
+      <section class="phase-section" id="p1" style="--phase-col:var(--c1)">
+        <div class="phase-label"><span class="ph-num">01</span>Foundation · Weeks 1–2</div>
+        <div class="node-row">
+
+          <div class="node done" data-id="d01">
+            <div class="node-top"><span class="node-day">Day 01</span><span class="node-badge"></span></div>
+            <div class="node-title">Python Fundamentals Refresh</div>
+            <div class="node-tags"><span>functions</span><span>modules</span><span>venv</span><span>pip</span></div>
+            <p class="node-notes">Warm up syntax, typing, and packaging muscle memory.</p>
+          </div>
+
+          <div class="node done" data-id="d02">
+            <div class="node-top"><span class="node-day">Day 02</span><span class="node-badge"></span></div>
+            <div class="node-title">OOP &amp; Python Data Structures</div>
+            <div class="node-tags"><span>classes</span><span>dicts</span><span>list comp</span><span>decorators</span>
+            </div>
+          </div>
+
+          <div class="node done" data-id="d03">
+            <div class="node-top"><span class="node-day">Day 03</span><span class="node-badge"></span></div>
+            <div class="node-title">Flask Install &amp; First App</div>
+            <div class="node-tags"><span>flask install</span><span>app.py</span><span>run
+                server</span><span>debug</span></div>
+          </div>
+
+          <div class="node done" data-id="d04">
+            <div class="node-top"><span class="node-day">Day 04</span><span class="node-badge"></span></div>
+            <div class="node-title">Routing &amp; URL Rules</div>
+            <div class="node-tags">
+              <span>@app.route</span><span>url_for</span><span>converters</span><span>methods</span></div>
+          </div>
+
+          <div class="node done" data-id="d05">
+            <div class="node-top"><span class="node-day">Day 05</span><span class="node-badge"></span></div>
+            <div class="node-title">Jinja2 Templates</div>
+            <div class="node-tags">
+              <span>render_template</span><span>loops</span><span>filters</span><span>extends</span></div>
+          </div>
+
+          <div class="node done" data-id="d06">
+            <div class="node-top"><span class="node-day">Day 06</span><span class="node-badge"></span></div>
+            <div class="node-title">Static Files &amp; HTML Forms</div>
+            <div class="node-tags">
+              <span>static/</span><span>request.form</span><span>GET/POST</span><span>redirect</span></div>
+          </div>
+
+        </div>
+        <div class="phase-divider">
+          <div class="phase-divider-line"></div>
+          <div class="phase-divider-dot"></div>
+          <div class="phase-divider-line"></div>
+        </div>
+      </section>
+
+      <!-- PHASE 2  -->
+      <section class="phase-section" id="p2" style="--phase-col:var(--c2)">
+        <div class="phase-label"><span class="ph-num">02</span>Persistence · Weeks 3–4</div>
+        <div class="node-row">
+
+          <div class="node current" data-id="d07">
+            <div class="node-top"><span class="node-day">Day 07</span><span class="node-badge"></span></div>
+            <div class="node-title">SQL &amp; SQLite Basics</div>
+            <div class="node-tags"><span>SQL syntax</span><span>CREATE</span><span>INSERT</span><span>SELECT</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d08">
+            <div class="node-top"><span class="node-day">Day 08</span><span class="node-badge"></span></div>
+            <div class="node-title">Flask-SQLAlchemy Setup</div>
+            <div class="node-tags"><span>db.Model</span><span>models</span><span>db.session</span><span>config</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d09">
+            <div class="node-top"><span class="node-day">Day 09</span><span class="node-badge"></span></div>
+            <div class="node-title">CRUD Operations</div>
+            <div class="node-tags"><span>create</span><span>read</span><span>update</span><span>delete</span></div>
+          </div>
+
+          <div class="node locked" data-id="d10">
+            <div class="node-top"><span class="node-day">Day 10</span><span class="node-badge"></span></div>
+            <div class="node-title">Relationships &amp; Queries</div>
+            <div class="node-tags"><span>ForeignKey</span><span>backref</span><span>filter_by</span><span>joins</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d11">
+            <div class="node-top"><span class="node-day">Day 11</span><span class="node-badge"></span></div>
+            <div class="node-title">Flask-Migrate</div>
+            <div class="node-tags"><span>alembic</span><span>migrate</span><span>upgrade</span><span>downgrade</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d12">
+            <div class="node-top"><span class="node-day">Day 12</span><span class="node-badge"></span></div>
+            <div class="node-title">Project: Task Manager App</div>
+            <div class="node-tags"><span>full CRUD</span><span>templates</span><span>db</span></div>
+          </div>
+
+        </div>
+        <div class="phase-divider">
+          <div class="phase-divider-line"></div>
+          <div class="phase-divider-dot"></div>
+          <div class="phase-divider-line"></div>
+        </div>
+      </section>
+
+      <!-- PHASE 3 -->
+      <section class="phase-section" id="p3" style="--phase-col:var(--c3)">
+        <div class="phase-label"><span class="ph-num">03</span>Auth &amp; Security · Weeks 5–6</div>
+        <div class="node-row">
+
+          <div class="node locked" data-id="d13">
+            <div class="node-top"><span class="node-day">Day 13</span><span class="node-badge"></span></div>
+            <div class="node-title">Sessions &amp; Cookies</div>
+            <div class="node-tags"><span>session[]</span><span>secret_key</span><span>cookies</span><span>flash()</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d14">
+            <div class="node-top"><span class="node-day">Day 14</span><span class="node-badge"></span></div>
+            <div class="node-title">Password Hashing</div>
+            <div class="node-tags"><span>bcrypt</span><span>werkzeug</span><span>hash/verify</span><span>salting</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d15">
+            <div class="node-top"><span class="node-day">Day 15</span><span class="node-badge"></span></div>
+            <div class="node-title">Flask-Login</div>
+            <div class="node-tags"><span>LoginManager</span><span>UserMixin</span><span>login_required</span></div>
+          </div>
+
+          <div class="node locked" data-id="d16">
+            <div class="node-top"><span class="node-day">Day 16</span><span class="node-badge"></span></div>
+            <div class="node-title">Flask-WTF &amp; Validation</div>
+            <div class="node-tags"><span>FlaskForm</span><span>validators</span><span>CSRF</span><span>wtforms</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d17">
+            <div class="node-top"><span class="node-day">Day 17</span><span class="node-badge"></span></div>
+            <div class="node-title">Email &amp; Password Reset</div>
+            <div class="node-tags"><span>Flask-Mail</span><span>itsdangerous</span><span>tokens</span></div>
+          </div>
+
+          <div class="node locked" data-id="d18">
+            <div class="node-top"><span class="node-day">Day 18</span><span class="node-badge"></span></div>
+            <div class="node-title">Project: Auth System</div>
+            <div class="node-tags"><span>register</span><span>login</span><span>logout</span><span>protected</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="phase-divider">
+          <div class="phase-divider-line"></div>
+          <div class="phase-divider-dot"></div>
+          <div class="phase-divider-line"></div>
+        </div>
+      </section>
+
+      <!-- PHASE 4 -->
+      <section class="phase-section" id="p4" style="--phase-col:var(--c4)">
+        <div class="phase-label"><span class="ph-num">04</span>REST API · Weeks 7–9</div>
+        <div class="node-row">
+
+          <div class="node locked" data-id="d19">
+            <div class="node-top"><span class="node-day">Day 19</span><span class="node-badge"></span></div>
+            <div class="node-title">REST Principles &amp; JSON</div>
+            <div class="node-tags"><span>REST</span><span>jsonify</span><span>status codes</span><span>Postman</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d20">
+            <div class="node-top"><span class="node-day">Day 20</span><span class="node-badge"></span></div>
+            <div class="node-title">Flask-RESTful / Smorest</div>
+            <div class="node-tags"><span>Resource</span><span>MethodView</span><span>Blueprints</span></div>
+          </div>
+
+          <div class="node locked" data-id="d21">
+            <div class="node-top"><span class="node-day">Day 21</span><span class="node-badge"></span></div>
+            <div class="node-title">Marshmallow &amp; Serialization</div>
+            <div class="node-tags"><span>Schema</span><span>validate</span><span>dump/load</span><span>nested</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d22">
+            <div class="node-top"><span class="node-day">Day 22</span><span class="node-badge"></span></div>
+            <div class="node-title">JWT Authentication</div>
+            <div class="node-tags"><span>Flask-JWT</span><span>access
+                token</span><span>refresh</span><span>revoke</span></div>
+          </div>
+
+          <div class="node locked" data-id="d23">
+            <div class="node-top"><span class="node-day">Day 23</span><span class="node-badge"></span></div>
+            <div class="node-title">Error Handling &amp; Testing</div>
+            <div class="node-tags"><span>errorhandler</span><span>pytest</span><span>unittest</span><span>mocking</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d24">
+            <div class="node-top"><span class="node-day">Day 24</span><span class="node-badge"></span></div>
+            <div class="node-title">Project: Full RESTful API</div>
+            <div class="node-tags"><span>full API</span><span>JWT auth</span><span>Swagger</span></div>
+          </div>
+
+        </div>
+        <div class="phase-divider">
+          <div class="phase-divider-line"></div>
+          <div class="phase-divider-dot"></div>
+          <div class="phase-divider-line"></div>
+        </div>
+      </section>
+
+      <!-- PHASE 5 -->
+      <section class="phase-section" id="p5" style="--phase-col:var(--c5)">
+        <div class="phase-label"><span class="ph-num">05</span>Architecture · Weeks 10–12</div>
+        <div class="node-row">
+
+          <div class="node locked" data-id="d25">
+            <div class="node-top"><span class="node-day">Day 25</span><span class="node-badge"></span></div>
+            <div class="node-title">App Factory &amp; Blueprints</div>
+            <div class="node-tags"><span>create_app()</span><span>Blueprint</span><span>config objects</span></div>
+          </div>
+
+          <div class="node locked" data-id="d26">
+            <div class="node-top"><span class="node-day">Day 26</span><span class="node-badge"></span></div>
+            <div class="node-title">Caching &amp; Redis</div>
+            <div class="node-tags"><span>Flask-Caching</span><span>Redis</span><span>@cached</span><span>TTL</span>
+            </div>
+          </div>
+
+          <div class="node locked" data-id="d27">
+            <div class="node-top"><span class="node-day">Day 27</span><span class="node-badge"></span></div>
+            <div class="node-title">Background Tasks with Celery</div>
+            <div class="node-tags"><span>Celery</span><span>tasks</span><span>beat</span><span>workers</span></div>
+          </div>
+
+          <div class="node locked" data-id="d28">
+            <div class="node-top"><span class="node-day">Day 28</span><span class="node-badge"></span></div>
+            <div class="node-title">WebSockets &amp; Real-time</div>
+            <div class="node-tags"><span>Flask-SocketIO</span><span>emit</span><span>rooms</span><span>events</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="phase-divider">
+          <div class="phase-divider-line"></div>
+          <div class="phase-divider-dot"></div>
+          <div class="phase-divider-line"></div>
+        </div>
+      </section>
+
+      <!-- PHASE 6 -->
+      <section class="phase-section" id="p6" style="--phase-col:var(--c6)">
+        <div class="phase-label"><span class="ph-num">06</span>Production &amp; Deploy · Weeks 13–16</div>
+        <div class="node-row">
+
+          <div class="node locked" data-id="d29">
+            <div class="node-top"><span class="node-day">Day 29</span><span class="node-badge"></span></div>
+            <div class="node-title">Docker &amp; Environment Config</div>
+            <div class="node-tags">
+              <span>Dockerfile</span><span>docker-compose</span><span>.env</span><span>gunicorn</span></div>
+          </div>
+
+          <div class="node locked" data-id="d30">
+            <div class="node-top"><span class="node-day">Day 30</span><span class="node-badge"></span></div>
+            <div class="node-title">Deploy to Railway / Render / VPS</div>
+            <div class="node-tags"><span>CI/CD</span><span>GitHub
+                Actions</span><span>PostgreSQL</span><span>monitoring</span></div>
+          </div>
+
+        </div>
+      </section>
+
+    </div><!-- /roadmap-canvas -->
+  </div><!-- /canvas-wrap -->
+
+  <!-- LEGEND -->
+  <div id="legend">
+    <div class="leg-item"><span class="leg-dot" style="background:var(--c4)"></span>Completed</div>
+    <div class="leg-item"><span class="leg-dot" style="background:var(--c1)"></span>In Progress</div>
+    <div class="leg-item"><span class="leg-dot" style="background:#2a2f45"></span>Upcoming</div>
+  </div>
+
+  <footer>
+    Flask Mastery Roadmap &middot; Updated <span id="footerDate">—</span> &middot; Learning Journal 2026
+  </footer>
+
+  <button id="theme-toggle" title="Toggle light / dark mode">☀️</button>
+  <script src=" {{url_for('static', filename='js/main.js')}}">
+    
+  </script>
+</body>
+
+</html>

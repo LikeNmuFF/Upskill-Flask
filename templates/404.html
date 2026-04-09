@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        body {
+            text-align: center;
+            align-items: center;
+            background-color: rgb(131, 28, 103)
+           
+            
+        }
+        a {
+            color: rgb(12, 61, 61);
+        }
+        h1,h3 {
+            color: rgb(131, 28, 103);
+            background-color: wheat;
+            padding: 20px;
+            margin: -10px;
+        }
+      .form {
+        padding: 20%;
+        align-items: center;
+
+      }
+      button{
+     
+        align-items: center;
+        color: blueviolet;
+        background-color: bisque;
+        width: 50% ;
+        height: 50%;
+      }
+
+    </style>
+</head>
+<body>
+    <h1>Page not found</h1>
+    <h3> go back to the root <a href="/">path</a></h3>
+    <form  class="form" action="/submit" method="POST">
+            <label for="username">Enter Name:</label>
+            <input type="text" id="username" name="user_name" placeholder="e.g. Klein" required>
+            <button type="submit">submit</button>
+
+    </form>
+</body>
+</html>
